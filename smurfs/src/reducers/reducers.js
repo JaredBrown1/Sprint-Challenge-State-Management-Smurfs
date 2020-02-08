@@ -8,6 +8,24 @@ const initialState = {
 
 export const smurfReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_DATA:
+      return {
+        ...state,
+        isFetchingData: true,
+        smurf: []
+      };
+    case UPDATE_SMURF:
+      return {
+        ...state,
+        smurf: action.payload.smurf,
+        isFetchingData: false
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        isFetchingData: false,
+        error: action.payload
+      };
     default:
       return state;
   }
