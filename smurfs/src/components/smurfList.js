@@ -1,30 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getData } from "../actions/actions";
+import Smurf from "./smurf";
 
 const SmurfList = props => {
+  //   useEffect(() => {
+  //     props.getData();
+  //   }, []);
+
+  const displaySmurfs = smurfs => {
+    return smurfs.map(res => <Smurf smurf={res} />);
+  };
+
   return (
     <div>
-      {props.error ? (
-        <div className="error">{props.error}</div>
-      ) : (
-        props.smurf.map(smurf => (
-          <div>
-            Smurf here
-            <h3>{smurf.name}</h3>
-            <h3>{smurf.age}</h3>
-            <h3>{smurf.height}</h3>
-          </div>
-        ))
-      )}
+      {displaySmurfs(props.smurf)}
+      {console.log(props)}
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    smurf: state.smurf
-  };
-};
+const mapStateToProps = state => ({
+  smurf: state.smurf,
+  isFetching: state.isFetching,
+  error: state.error
+});
 
 export default connect(mapStateToProps, { getData })(SmurfList);

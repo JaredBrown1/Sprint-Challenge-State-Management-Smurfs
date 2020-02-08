@@ -11,14 +11,12 @@ export const smurfReducer = (state = initialState, action) => {
     case FETCH_DATA:
       return {
         ...state,
-        isFetchingData: true,
-        smurf: []
+        isFetchingData: true
       };
     case UPDATE_SMURF:
       return {
         ...state,
-        smurf: action.payload.smurf,
-        isFetchingData: false
+        smurf: action.payload
       };
     case SET_ERROR:
       return {
